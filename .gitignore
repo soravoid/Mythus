@@ -6,6 +6,9 @@ bin
 .classpath
 .project
 
+.floo
+.flooignore
+
 # idea
 out
 *.ipr
@@ -23,6 +26,4 @@ run
 
 # Files from Forge MDK
 forge*changelog.txt
-
-.floo
-.flooignore
+/.floo

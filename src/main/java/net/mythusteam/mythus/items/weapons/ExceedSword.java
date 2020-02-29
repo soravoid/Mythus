@@ -4,8 +4,9 @@ import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.SwordItem;
 import net.mythusteam.mythus.Mythus;
+import net.mythusteam.mythus.utils.IHasQuality;
 
-public class ExceedSword extends SwordItem
+public class ExceedSword extends SwordItem implements IHasQuality
 {
     public ExceedSword(IItemTier tier, int attackDamage, float attackSpeed)
     {

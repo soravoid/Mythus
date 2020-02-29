@@ -11,5 +11,5 @@ public class MythusItems
 {
     public static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, Mythus.MODID);
 
-    public static final RegistryObject<Item> HELLFIRE_SWORD = ITEMS.register("hellfire_sword", HellfireSword::new);
+    public static final RegistryObject<Item> HELLFIRE_SWORD = ITEMS.register("hellfire_sword", () -> new HellfireSword());
 }

@@ -34,7 +34,9 @@ public enum MythusToolTiers implements IItemTier
     }
 
     @Override
-    public Ingredient getRepairMaterial() { return repairItem; }
+    public Ingredient getRepairMaterial() {
+        return repairItem;
+    }
 
     @Override
     public int getEnchantability() {
