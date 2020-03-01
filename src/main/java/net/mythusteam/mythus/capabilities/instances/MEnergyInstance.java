@@ -4,6 +4,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.mythusteam.mythus.capabilities.interfaces.IMEnergy;
 import net.mythusteam.mythus.events.MEnergyChangedEvent;
+import net.mythusteam.mythus.render.RenderMEnergyBar;
 
 import java.util.Random;
 
@@ -29,6 +30,12 @@ public class MEnergyInstance implements IMEnergy
     public void setCurrent(int val)
     {
         this.current = val;
+        this.updateClient();
+    }
+
+    @Override
+    public void updateClient()
+    {
         MinecraftForge.EVENT_BUS.post(new MEnergyChangedEvent(this.player));
     }
 
@@ -40,7 +47,7 @@ public class MEnergyInstance implements IMEnergy
     public void setMax(int val) {
         this.max = val;
         if(val < current) this.current = val;
-        MinecraftForge.EVENT_BUS.post(new MEnergyChangedEvent(this.player));
+        this.updateClient();
     }
 
     /**

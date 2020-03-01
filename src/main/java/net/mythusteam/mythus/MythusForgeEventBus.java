@@ -14,6 +14,7 @@ import net.mythusteam.mythus.capabilities.CapabilitySmithQuality;
 import net.mythusteam.mythus.events.MEnergyChangedEvent;
 import net.mythusteam.mythus.network.MythusPacketHandler;
 import net.mythusteam.mythus.network.capabilities.MEnergyPacket;
+import net.mythusteam.mythus.render.RenderMEnergyBar;
 import net.mythusteam.mythus.utils.IHasQuality;
 
 @Mod.EventBusSubscriber(modid = Mythus.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -42,15 +43,27 @@ public class MythusForgeEventBus
         {
             e.getPlayer().getCapability(CapabilityMEnergy.M_ENERGY_CAPABILITY).ifPresent(cap -> {
                 MythusPacketHandler.INSTANCE.sendTo(new MEnergyPacket(cap.getCurrent(), cap.getMax()), ((ServerPlayerEntity)e.getPlayer()).connection.netManager, NetworkDirection.PLAY_TO_CLIENT);
+                RenderMEnergyBar.timeSinceLastUpdate = 0;
             });
-            //TODO Update M-Energy Bar
         }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent e)
+    {
+        e.getPlayer().getCapability(CapabilityMEnergy.M_ENERGY_CAPABILITY).ifPresent(cap -> {
+            cap.setPlayer(e.getPlayer());
+            cap.updateClient();
+        });
     }
 
     @SubscribeEvent
     public static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent e)
     {
-        //TODO Send packets to client
+        e.getPlayer().getCapability(CapabilityMEnergy.M_ENERGY_CAPABILITY).ifPresent(cap -> {
+            cap.setPlayer(e.getPlayer());
+            cap.updateClient();
+        });
     }
 
     @SubscribeEvent

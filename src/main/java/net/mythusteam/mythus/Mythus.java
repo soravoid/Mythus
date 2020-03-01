@@ -3,6 +3,7 @@ package net.mythusteam.mythus;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -18,6 +19,7 @@ import net.mythusteam.mythus.init.MythusBlocks;
 import net.mythusteam.mythus.init.MythusItemGroups;
 import net.mythusteam.mythus.init.MythusItems;
 import net.mythusteam.mythus.network.MythusPacketHandler;
+import net.mythusteam.mythus.render.RenderMEnergyBar;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -43,5 +45,6 @@ public class Mythus
         MythusPacketHandler.init();
         CapabilityManager.INSTANCE.register(ISmithQuality.class, new CapabilitySmithQuality.Storage(), SmithQualityInstance::new);
         CapabilityManager.INSTANCE.register(IMEnergy.class, new CapabilityMEnergy.Storage(), () -> new MEnergyInstance(null));
+        MinecraftForge.EVENT_BUS.register(new RenderMEnergyBar());
     }
 }

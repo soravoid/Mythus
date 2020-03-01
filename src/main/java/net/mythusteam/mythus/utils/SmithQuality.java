@@ -2,7 +2,7 @@ package net.mythusteam.mythus.utils;
 
 public enum SmithQuality
 {
-    ;
+    SHARP, CHARRED;
 
     @Override
     public String toString() {

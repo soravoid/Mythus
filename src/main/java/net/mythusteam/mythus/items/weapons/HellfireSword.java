@@ -12,7 +12,7 @@ import net.mythusteam.mythus.Mythus;
 import net.mythusteam.mythus.items.MythusToolTiers;
 
 @Mod.EventBusSubscriber(modid = Mythus.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
-public class HellfireSword extends ExceedSword
+public class HellfireSword extends MythusSword
 {
     public HellfireSword()
     {
