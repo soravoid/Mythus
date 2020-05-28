@@ -1,5 +1,6 @@
 package mod.mythusteam.mythus;
 
+import mod.mythusteam.mythus.capabilities.CapabilityCoreStorage;
 import mod.mythusteam.mythus.utils.IHasQuality;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -48,6 +49,7 @@ public class MythusForgeEventBus
         {
             e.addCapability(CapabilityMEnergy.LOCATION, new CapabilityMEnergy());
             e.getObject().getCapability(CapabilityMEnergy.M_ENERGY_CAPABILITY).ifPresent(cap -> cap.setPlayer((PlayerEntity) e.getObject()));
+            e.addCapability(CapabilityCoreStorage.LOCATION, new CapabilityCoreStorage());
         }
     }
 

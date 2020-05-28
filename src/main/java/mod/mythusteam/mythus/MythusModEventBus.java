@@ -1,6 +1,7 @@
 package mod.mythusteam.mythus;
 
 import mod.mythusteam.mythus.init.MythusBlocks;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;

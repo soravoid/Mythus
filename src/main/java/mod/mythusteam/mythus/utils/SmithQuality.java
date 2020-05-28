@@ -1,8 +1,17 @@
 package mod.mythusteam.mythus.utils;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
+
 public enum SmithQuality
 {
-    SHARP, CHARRED;
+    SHARP(ChatFormatting.AQUA), CHARRED(ChatFormatting.DARK_RED);
+
+    ChatFormatting color;
+
+    SmithQuality(ChatFormatting color)
+    {
+        this.color = color;
+    }
 
     //TODO Add colors to names?
     @Override
@@ -21,6 +30,6 @@ public enum SmithQuality
             }
             converted.append(ch);
         }
-        return converted.toString();
+        return color + converted.toString();
     }
 }

@@ -1,7 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
-	"textures": {
+	"textures":
+	{
 		"0": "mythus:item/vortex_polearm"
 	},
 	"elements": [

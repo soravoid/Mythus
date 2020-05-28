@@ -22,5 +22,6 @@ public class MythusPacketHandler
 
         INSTANCE.registerMessage(id++, MEnergyPacket.class, MEnergyPacket::encode, MEnergyPacket::decode, MEnergyPacket::handle);
         INSTANCE.registerMessage(id++, ExtendedReachPacket.class, ExtendedReachPacket::encode, ExtendedReachPacket::decode, ExtendedReachPacket::handle);
+        INSTANCE.registerMessage(id++, MythusCoreStorageGUIPacket.class, MythusCoreStorageGUIPacket::encode, MythusCoreStorageGUIPacket::decode, MythusCoreStorageGUIPacket::handle);
     }
 }
