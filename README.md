@@ -1,2 +1,2 @@
 # Mythus
-Minecraft mod for IB CAS project
+Fantasy themed; Magic and whatnot
