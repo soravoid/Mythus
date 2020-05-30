@@ -10,6 +10,7 @@ import mod.mythusteam.mythus.capabilities.interfaces.IMEnergy;
 import mod.mythusteam.mythus.client.CoreStorageGui;
 import mod.mythusteam.mythus.init.*;
 import mod.mythusteam.mythus.network.MythusPacketHandler;
+import mod.mythusteam.mythus.render.EnderArrowRenderer;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.item.ItemGroup;
@@ -58,6 +59,7 @@ public class Mythus
     public void onClientSetup(FMLClientSetupEvent e)
     {
         RenderingRegistry.registerEntityRenderingHandler(MythusEntities.EXPLODING_ARROW.get(), ExplodingArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(MythusEntities.ENDER_ARROW.get(), EnderArrowRenderer::new);
 
         DeferredWorkQueue.runLater(() -> {
             ScreenManager.registerFactory(MythusContainers.CORE_STORAGE_CONTAINER.get(), CoreStorageGui::new);

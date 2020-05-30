@@ -26,6 +26,17 @@ public class CoreStorageInstance extends ItemStackHandler implements ICoreStorag
         this.level = level;
     }
 
+    @Nonnull
+    @Override
+    public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+        return super.insertItem(slot, stack, simulate);
+    }
+
+    @Override
+    public void setStackInSlot(int slot, @Nonnull ItemStack stack) {
+        super.setStackInSlot(slot, stack);
+    }
+
     @Override
     public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
         return stack.getItem() instanceof MythusCore;

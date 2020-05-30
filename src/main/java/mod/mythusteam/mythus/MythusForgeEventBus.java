@@ -1,23 +1,30 @@
 package mod.mythusteam.mythus;
 
 import mod.mythusteam.mythus.capabilities.CapabilityCoreStorage;
+import mod.mythusteam.mythus.entity.arrows.EnderArrowEntity;
 import mod.mythusteam.mythus.utils.IHasQuality;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.client.event.sound.SoundEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.network.NetworkDirection;
 import mod.mythusteam.mythus.capabilities.CapabilityMEnergy;
@@ -93,6 +100,30 @@ public class MythusForgeEventBus
                     cap1.setSilently(cap2.getMax(), cap2.getMax());
                 });
             });
+        }
+    }
+
+    @SubscribeEvent
+    public static void onArrowHitBlock(ProjectileImpactEvent e)
+    {
+
+        if(e.getEntity() instanceof EnderArrowEntity)
+        {
+            EnderArrowEntity arrow = (EnderArrowEntity) e.getEntity();
+            if(arrow.getShooter() instanceof PlayerEntity)
+            {
+                PlayerEntity player = (PlayerEntity) arrow.getShooter();
+                BlockPos nextPos = new BlockPos(arrow.getPosX(), arrow.getPosY(), arrow.getPosZ());
+                if(player.getPosition().withinDistance(nextPos, 64))
+                {
+                    player.teleportKeepLoaded(arrow.getPosX(), arrow.getPosY(), arrow.getPosZ());
+                    player.getEntityWorld().playSound(null, nextPos, SoundEvents.ENTITY_ENDERMAN_TELEPORT, SoundCategory.NEUTRAL,
+                            0.8F, 0.8F + player.getEntityWorld().rand.nextFloat() * 0.4F);
+                    //TODO Fix Particles
+                    //player.getEntityWorld().addParticle(ParticleTypes.POOF, arrow.getPosX(), arrow.getPosY(), arrow.getPosZ(), 0, 0, 0);
+                    if(!player.getEntityWorld().isRemote) ((ServerWorld) player.getEntityWorld()).removeEntityComplete(arrow, false);
+                }
+            }
         }
     }
 

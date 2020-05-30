@@ -48,7 +48,7 @@ public class MythusItemRelatedEventBus
     public static void onTick(TickEvent.PlayerTickEvent e)
     {
         ItemStack stack = e.player.getHeldItem(Hand.MAIN_HAND);
-        //if(!(stack.getItem() instanceof Poleswarm)) e.player.getAttribute(PlayerEntity.REACH_DISTANCE).removeModifier(modi);
+        //if(!(stack.getItem() instanceof Polearm)) e.player.getAttribute(PlayerEntity.REACH_DISTANCE).removeModifier(modi);
         if(stack.getItem() instanceof HellfireSword)
         {
             BlockPos pos = new BlockPos(new BlockPos(e.player.getPosX(), e.player.getPosY() - 1, e.player.getPosZ()));
@@ -70,6 +70,7 @@ public class MythusItemRelatedEventBus
    @SubscribeEvent
     public static void onLeftClick(PlayerInteractEvent.LeftClickEmpty e)
     {
+        Mythus.LOG.info("Left Click Detected!");
         if(e.getItemStack().getItem() instanceof IExtendedReach)
         {
             double dist = ((IExtendedReach) e.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem()).getReach();
