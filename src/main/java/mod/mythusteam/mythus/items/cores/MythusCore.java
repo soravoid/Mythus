@@ -5,7 +5,7 @@ import net.minecraft.item.Item;
 
 public class MythusCore extends Item
 {
-    public MythusCore()
+    public MythusCore(MythusCoreTypes type)
     {
         super(new Item.Properties().group(Mythus.MYTHUS_TAB).maxStackSize(1));
     }

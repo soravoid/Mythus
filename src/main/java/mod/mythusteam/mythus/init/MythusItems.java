@@ -3,6 +3,7 @@ package mod.mythusteam.mythus.init;
 import mod.mythusteam.mythus.items.arrows.EnderArrowItem;
 import mod.mythusteam.mythus.items.axes.SmallAxe;
 import mod.mythusteam.mythus.items.cores.MythusCore;
+import mod.mythusteam.mythus.items.cores.MythusCoreTypes;
 import mod.mythusteam.mythus.items.polearms.Halberd;
 import mod.mythusteam.mythus.items.swords.BasicSword;
 import net.minecraft.item.Item;
@@ -24,12 +25,12 @@ public class MythusItems
     public static final RegistryObject<Item> HELLFIRE_SWORD = ITEMS.register("hellfire_sword", HellfireSword::new);
     public static final RegistryObject<Item> VORTEX_POLEARM = ITEMS.register("vortex_polearm", VortexPolearm::new);
     public static final RegistryObject<Item> MYTHUS_LANCE = ITEMS.register("mythus_lance", () -> new Item(new Item.Properties().group(Mythus.MYTHUS_TAB)));
-    public static final RegistryObject<Item> SCIMITARTEST = ITEMS.register("scimitar", () -> new ScimitarTest());
-    public static final RegistryObject<Item> SMALL_AXE = ITEMS.register("small_axe", () -> new SmallAxe());
+    public static final RegistryObject<Item> SCIMITARTEST = ITEMS.register("scimitar", ScimitarTest::new);
+    public static final RegistryObject<Item> SMALL_AXE = ITEMS.register("small_axe", SmallAxe::new);
     public static final RegistryObject<Item> HALBERD = ITEMS.register("halberd", Halberd::new);
     public static final RegistryObject<Item> BASIC_SWORD = ITEMS.register("basic_sword", BasicSword::new);
 
-    public static final RegistryObject<Item> TEST_CORE = ITEMS.register("test_core", MythusCore::new);
+    public static final RegistryObject<Item> TEST_CORE = ITEMS.register("test_core", () -> new MythusCore(MythusCoreTypes.TEST));
 
     //Arrows
     public static final RegistryObject<Item> EXPLODING_ARROW = ITEMS.register("exploding_arrow", ExplodingArrowItem::new);
